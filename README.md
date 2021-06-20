@@ -1,2 +1,2 @@
 # numbersandletters
-A web based game based on the popular Countdown TV show
+A web game based on the popular Countdown TV show
