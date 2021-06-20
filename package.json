@@ -1,0 +1,28 @@
+{
+  "name": "numbersandletters",
+  "version": "0.0.1",
+  "description": "A web game based on the popular Countdown TV program.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-tslint": "^8.1.4",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.3.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewjw/numbersandletters.git"
+  },
+  "author": "Andrew Wilkinson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewjw/numbersandletters/issues"
+  },
+  "homepage": "https://github.com/andrewjw/numbersandletters#readme"
+}
