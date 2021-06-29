@@ -1,6 +1,9 @@
 const del = require('del');
 const { dest, series, src, parallel, watch } = require('gulp');
-const ts = require('gulp-typescript')
+const ts = require('gulp-typescript');
+const browserify = require("browserify");
+const source = require("vinyl-source-stream");
+const tsify = require("tsify");
 const browserSync = require('browser-sync').create();
 
 function clean() {
@@ -8,12 +11,17 @@ function clean() {
 }
 
 function buildTs() {
-    return src("src/**/*.ts")
-        .pipe(ts({
-            noImplicitAny: true,
-            outFile: "code.js"
-        }))
-        .pipe(dest("built/static"));
+    return browserify({
+      basedir: ".",
+      debug: true,
+      entries: ["src/index.tsx"],
+      cache: {},
+      packageCache: {},
+    })
+      .plugin(tsify, {jsx: "react"})
+      .bundle()
+      .pipe(source("code.js"))
+      .pipe(dest("built/static"));
 }
 
 function buildHTML() {
@@ -21,10 +29,15 @@ function buildHTML() {
            .pipe(dest("built/"))
 }
 
-const build = parallel(buildTs, buildHTML);
+function buildImages() {
+    return src("static/**/*.png")
+           .pipe(dest("built/"))
+}
+
+const build = parallel(buildTs, buildHTML, buildImages);
 
 function watchfiles() {
-    watch("src/**/*.ts", series(build, browserSyncReload));
+    watch(["src/**/*.ts", "src/**/*.tsx", "static/**/*.html"], series(build, browserSyncReload));
 }
 
 function browserSyncTask(cb) {
