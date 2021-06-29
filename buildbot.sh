@@ -4,7 +4,7 @@ set -e
 
 npm ci
 
-gulp build
+node node_modules/gulp/bin/gulp.js build
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [[ "$BRANCH" == "master" ]]; then
