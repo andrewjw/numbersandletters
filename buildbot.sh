@@ -7,6 +7,6 @@ npm ci
 node node_modules/gulp/bin/gulp.js build
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [[ "$BRANCH" == "master" ]]; then
+if [[ "$BRANCH" == "main" ]]; then
   rsync -avc --delete built/ $SSH_USER@$SSH_HOST:numbersandletters/
 fi
